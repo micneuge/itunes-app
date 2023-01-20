@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Album } from '../lib/interfaces';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import useWindowDimensions from '../hooks/useWindowDimensions';
+import { favoriteAlbumsState } from '../recoil/albums';
+import { useRecoilState } from 'recoil';
 
 interface Props {
   album: Album;
@@ -25,6 +27,26 @@ const getCardStyles = (width: number) => {
 
 const AlbumCard: React.FC<Props> = ({ album }) => {
   const { width } = useWindowDimensions();
+  const [favoriteAlbums, setFavoriteAlbums] =
+    useRecoilState(favoriteAlbumsState);
+
+  const onFavoriteAlbumClick = () => {
+    setFavoriteAlbums((prevState) => [
+      ...prevState,
+      album.id.attributes['im:id'],
+    ]);
+  };
+
+  const onRemoveFavoriteAlbum = () => {
+    setFavoriteAlbums((prevState) =>
+      prevState.filter((id) => id !== album.id.attributes['im:id'])
+    );
+  };
+
+  const favorited = useMemo(
+    () => favoriteAlbums.find((id) => id === album.id.attributes['im:id']),
+    [favoriteAlbums]
+  );
 
   return (
     <Card style={getCardStyles(width)}>
@@ -36,7 +58,15 @@ const AlbumCard: React.FC<Props> = ({ album }) => {
       <Card.Body>
         <Card.Title>{album['im:name'].label}</Card.Title>
         <Card.Text>{album['im:artist'].label}</Card.Text>
-        <Button variant="primary">Add to favorite</Button>
+        {!favorited ? (
+          <Button onClick={onFavoriteAlbumClick} variant="primary">
+            Add to favorite
+          </Button>
+        ) : (
+          <Button onClick={onRemoveFavoriteAlbum} variant="danger">
+            Remove from favorite
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );

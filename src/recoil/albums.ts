@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { atom, selector } from 'recoil';
 import { fetchAlbums } from '../lib/api';
 import { Album } from '../lib/interfaces';
 import { inputState } from './searchInput';
@@ -22,4 +22,9 @@ export const filteredAlbums = selector<Album[]>({
           album['im:name'].label.toLowerCase().includes(input.toLowerCase())
         );
   },
+});
+
+export const favoriteAlbumsState = atom<string[]>({
+  key: 'FavoriteAlbums',
+  default: [],
 });
