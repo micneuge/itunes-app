@@ -60,11 +60,11 @@ const AlbumCard: React.FC<Props> = ({ album }) => {
         <Card.Text>{album['im:artist'].label}</Card.Text>
         {!favorited ? (
           <Button onClick={onFavoriteAlbumClick} variant="primary">
-            Add to favorite
+            Add to favorites
           </Button>
         ) : (
           <Button onClick={onRemoveFavoriteAlbum} variant="danger">
-            Remove from favorite
+            Remove from favorites
           </Button>
         )}
       </Card.Body>

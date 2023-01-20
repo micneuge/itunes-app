@@ -44,10 +44,14 @@ describe('Album card', () => {
       </RecoilRoot>
     );
 
-    fireEvent.click(screen.getByText('Add to favorite'));
+    fireEvent.click(screen.getByText('Add to favorites'));
 
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(onChange).toHaveBeenCalledWith([]); // Initial state on render.
     expect(onChange).toHaveBeenCalledWith(['1']); // New value on change.
+
+    fireEvent.click(screen.getByText('Remove from favorites'));
+    expect(onChange).toHaveBeenCalledTimes(3);
+    expect(onChange).toHaveBeenCalledWith([]);
   });
 });
