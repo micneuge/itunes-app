@@ -16,6 +16,10 @@ describe('Albums', () => {
       'im:name': {
         label: 'Album name',
       },
+      'im:artist': {
+        label: 'Artist name',
+      },
+      'im:image': [{}, {}, { label: 'imageUrl' }],
     },
     {
       id: {
@@ -26,6 +30,10 @@ describe('Albums', () => {
       'im:name': {
         label: 'Album name 2',
       },
+      'im:artist': {
+        label: 'Artist name',
+      },
+      'im:image': [{}, {}, { label: 'imageUrl' }],
     },
   ];
 

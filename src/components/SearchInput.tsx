@@ -9,6 +9,8 @@ const SearchInput = () => {
       type="text"
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      className="form-control mx-auto"
+      placeholder="Album name"
     />
   );
 };
