@@ -1,6 +1,7 @@
 # Itunes top 100 app
 
-Itunes top 100 app is app which display top albums from Itunes api, and add them to your favorites! It's build with React and Recoil.
+Itunes top 100 app is an app which display top albums from Itunes api, and give you ability to add them to your favorites! 
+It's build with React and Recoil.
 
 Potential improvements: 
 - persist state in local storage,
